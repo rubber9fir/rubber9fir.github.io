@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="思忆 - 一个专注于记录生活点滴、情感沉淀与时光回溯的数字记忆空间。在这里，您可以整理回忆、书写心情、珍藏美好瞬间。">
+    <meta name="keywords" content="思忆,回忆录,情感记录,个人日记,时光相册,生活感悟">
+    <title>思忆 - 个人时光记录与情感沉淀空间</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #8e7f6e;
+            --secondary-color: #d4c4b0;
+            --bg-color: #f9f7f4;
+            --card-bg: #ffffff;
+            --text-main: #2c2c2c;
+            --text-sub: #666666;
+            --border-color: #e0dcd5;
+            --spacing-unit: 1rem;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* 布局容器 */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        /* 头部导航 */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 1rem;
+            color: var(--text-main);
+            position: relative;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .btn-write {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-write:hover {
+            background-color: #7a6b5c;
+            color: #fff;
+        }
+
+        /* Hero 区域 */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(180deg, #fff 0%, var(--bg-color) 100%);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-sub);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 40px;
+        }
+
+        .stat-item h3 {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        .stat-item p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* 功能特点 */
+        .features {
+            padding: 60px 0;
+            background-color: #fff;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-sub);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            padding: 30px;
+            border-radius: 12px;
+            background-color: var(--bg-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.25rem;
+        }
+
+        .feature-card p {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+        }
+
+        /* 回忆展示 */
+        .memories {
+            padding: 80px 0;
+        }
+
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            border: 1px solid var(--border-color);
+            background: transparent;
+            border-radius: 20px;
+            cursor: pointer;
+            color: var(--text-sub);
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+            border-color: var(--primary-color);
+        }
+
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .memory-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .memory-img {
+            width: 100%;
+            height: 200px;
+            background-color: #eee;
+            object-fit: cover;
+        }
+
+        .memory-content {
+            padding: 20px;
+        }
+
+        .memory-date {
+            font-size: 0.8rem;
+            color: #999;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .memory-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .memory-excerpt {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* 情感共鸣区 */
+        .emotion-section {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .emotion-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .emotion-section p {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #fff;
+            border-top: 1px solid var(--border-color);
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col p {
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-sub);
+            font-size: 0.9rem;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .nav-inner {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+                font-size: 0.9rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-inner">
+            <a href="#" class="logo">
+                思忆 
+                <span>MOMENT</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">时光轴</a></li>
+                    <li><a href="#">分类回忆</a></li>
+                    <li><a href="#">私密日记</a></li>
+                    <li><a href="#">关于我们</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="btn-write">开始记录</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>留住时光的痕迹</h1>
+                <p>思忆是一个属于您的数字记忆空间。在这里，您可以整理散落的回忆、珍藏生活的瞬间、记录内心的情感波动。让每一个平凡的日子，都成为值得铭记的篇章。</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h3>10W+</h3>
+                        <p>用户记录</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>500W+</h3>
+                        <p>珍贵瞬间</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>24h</h3>
+                        <p>云端备份</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <div class="section-title">
+                    <h2>如何记录您的思忆</h2>
+                    <p>简单几步，将生活中的点滴转化为永恒的数字档案</p>
+                </div>
+                <div class="feature-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon">📷</div>
+                        <h3>图文并茂</h3>
+                        <p>支持上传照片、视频与文字，用多媒体形式还原真实场景，让回忆更加生动。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">📅</div>
+                        <h3>时间轴管理</h3>
+                        <p>自动生成时间轴，按年份、月份整理记录，清晰查看岁月的流逝与成长。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>私密加密</h3>
+                        <p>支持设置密码与私密相册，将不想公开的内心独白妥善保管，仅自己可见。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="memories">
+            <div class="container">
+                <div class="section-title">
+                    <h2>精选回忆录</h2>
+                    <p>看看其他用户是如何记录他们珍贵的思忆</p>
+                </div>
+                
+                <div class="filter-bar">
+                    <button class="filter-btn active">全部</button>
+                    <button class="filter-btn">旅行足迹</button>
+                    <button class="filter-btn">生活感悟</button>
+                    <button class="filter-btn">家庭时光</button>
+                    <button class="filter-btn">节日纪念</button>
+                </div>
+
+                <div class="memory-grid">
+                    <article class="memory-card">
+                        <img src="https://picsum.photos/seed/mem1/400/300" alt="海边日出" class="memory-img">
+                        <div class="memory-content">
+                            <span class="memory-date">2023年10月15日</span>
+                            <h3 class="memory-title">那年夏天的海边</h3>
+                            <p class="memory-excerpt">清晨五点就起床看日出，海风带着咸味，那一刻觉得世界都安静了下来。这是我最喜欢的记忆之一。</p>
+                        </div>
+                    </article>
+
+                    <article class="memory-card">
+                        <img src="https://picsum.photos/seed/mem2/400/300" alt="秋日街道" class="memory-img">
+                        <div class="memory-content">
+                            <span class="memory-date">2023年11月02日</span>
+                            <h3 class="memory-title">秋日的落叶</h3>
+                            <p class="memory-excerpt">走在铺满落叶的街道上，踩上去沙沙作响。突然想起小时候在老家捡枫叶做书签的日子。</p>
+                        </div>
+                    </article>
+
+                    <article class="memory-card">
+                        <img src="https://picsum.photos/seed/mem3/400/300" alt="咖啡时光" class="memory-img">
+                        <div class="memory-content">
+                            <span class="memory-date">2023年12月20日</span>
+                            <h3 class="memory-title">冬日的一杯热可可</h3>
+                            <p class="memory-excerpt">窗外下着雪，手里捧着一杯热可可，看着窗外的行人匆匆。这种温暖的感觉，让人很安心。</p>
+                        </div>
+                    </article>
+
+                    <article class="memory-card">
+                        <img src="https://picsum.photos/seed/mem4/400/300" alt="家庭聚餐" class="memory-img">
+                        <div class="memory-content">
+                            <span class="memory-date">2024年01月01日</span>
+                            <h3 class="memory-title">新年第一顿饭</h3>
+                            <p class="memory-excerpt">全家人聚在一起吃火锅，虽然吵吵闹闹，但这就是幸福的样子。感谢有你们在身边。</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="emotion-section">
+            <div class="container">
+                <h2>关于“思忆”</h2>
+                <p>我们相信，记忆是生命的基石。在这个快节奏的时代，我们常常忽略了身边的美好。思忆旨在帮助您慢下来，去发现、去记录、去感受。</p>
+                <span class="quote">“记忆是心灵的博物馆，思忆是您最好的策展人。”</span>
+                <a href="#" class="btn-write" style="background-color: #fff; color: var(--primary-color);">了解更多</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo" style="margin-bottom: 15px; display:inline-block;">
+                        思忆 
+                        <span>MOMENT</span>
+                    </a>
+                    <p>思忆致力于为用户提供最温馨、最安全的个人记忆记录服务。让每一段时光，都不被遗忘。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>产品服务</h4>
+                    <ul>
+                        <li><a href="#">时光相册</a></li>
+                        <li><a href="#">情感日记</a></li>
+                        <li><a href="#">回忆导出</a></li>
+                        <li><a href="#">定制相册</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>帮助中心</h4>
+                    <ul>
+                        <li><a href="#">使用指南</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                        <li><a href="#">服务条款</a></li>
+                        <li><a href="#">联系客服</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <ul>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">新浪微博</a></li>
+                        <li><a href="#">用户社区</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 思忆 Moment. All rights reserved. </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
