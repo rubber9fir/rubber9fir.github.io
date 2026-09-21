@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>光彩的第二街 - 独立艺术影像与创意生活指南</title>
+    <meta name="description" content="光彩的第二街是一个专注于独立电影、实验影像与创意生活方式的在线平台。我们探索城市光影的边缘地带，提供深度影评、作者访谈、独立放映资讯及艺术灵感分享。">
+    <meta name="keywords" content="光彩的第二街, 独立电影, 实验影像, 创意生活, 城市摄影, 深度影评">
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --card-bg: #141414;
+            --text-main: #e0e0e0;
+            --text-muted: #888888;
+            --accent-color: #d4af37; /* 香槟金 */
+            --accent-hover: #f3cf55;
+            --border-color: #333333;
+            --spacing-unit: 1rem;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* 布局容器 */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        /* 头部导航 */
+        header {
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            position: relative;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .search-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .search-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        /* Hero 区域 */
+        .hero {
+            position: relative;
+            height: 60vh;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(10,10,10,0.3), var(--bg-color)), 
+                        url('https://picsum.photos/seed/neoncity/1920/1080.jpg') center/cover no-repeat;
+            z-index: -1;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--accent-color);
+            color: #000;
+            font-weight: 600;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--text-main);
+            color: var(--text-main);
+            margin-left: 1rem;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        /* 分类导航 */
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .cat-item {
+            padding: 0.5rem 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cat-item:hover, .cat-item.active {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            background-color: rgba(212, 175, 55, 0.05);
+        }
+
+        /* 内容网格 */
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .section-title a {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            border-bottom: 1px solid transparent;
+        }
+
+        .section-title a:hover {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-color: var(--border-color);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            filter: grayscale(20%);
+            transition: filter 0.3s ease;
+        }
+
+        .card:hover .card-image {
+            filter: grayscale(0%);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #666;
+            border-top: 1px solid #222;
+            padding-top: 1rem;
+        }
+
+        /* 特色专栏 */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .featured-card {
+            position: relative;
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .featured-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .featured-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .featured-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+        }
+
+        .featured-overlay h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-list .sidebar-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #222;
+        }
+
+        .sidebar-list .sidebar-item:last-child {
+            border-bottom: none;
+        }
+
+        .sidebar-thumb {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .sidebar-info span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* 影院时刻表 */
+        .schedule-section {
+            background-color: var(--card-bg);
+            padding: 3rem 0;
+            margin-bottom: 4rem;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .schedule-table th, .schedule-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .schedule-table th {
+            color: var(--text-muted);
+            font-weight: 400;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .schedule-table td {
+            font-size: 1rem;
+        }
+
+        .film-title {
+            display: block;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .film-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-right: 0.5rem;
+        }
+
+        .status-ticket {
+            background-color: rgba(212, 175, 55, 0.2);
+            color: var(--accent-color);
+        }
+
+        /* 页脚 */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 4rem 0 2rem;
+            background-color: #050505;
+            color: var(--text-muted);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h5 {
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #1a1a1a;
+            font-size: 0.85rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-inner {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-inner">
+            <a href="#" class="logo">光彩的第二街</a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">深度影评</a></li>
+                    <li><a href="#">独立影像</a></li>
+                    <li><a href="#">城市漫游</a></li>
+                    <li><a href="#">关于我们</a></li>
+                </ul>
+            </nav>
+            <button class="search-btn">搜索</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-content">
+                <h1>在光影之外，寻找城市微光</h1>
+                <p>我们记录那些未被主流镜头捕捉的瞬间，探讨影像与生活的边界。</p>
+                <div>
+                    <a href="#" class="btn">开始探索</a>
+                    <a href="#" class="btn btn-outline">订阅周刊</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Category Filter -->
+            <div class="categories">
+                <span class="cat-item active">全部</span>
+                <span class="cat-item">独立电影</span>
+                <span class="cat-item">胶片摄影</span>
+                <span class="cat-item">城市建筑</span>
+                <span class="cat-item">先锋艺术</span>
+                <span class="cat-item">小众音乐</span>
+            </div>
+
+            <!-- Featured Section -->
+            <section class="featured-grid">
+                <article class="featured-card">
+                    <img src="https://picsum.photos/seed/cinema/800/600" alt="Featured Article">
+                    <div class="featured-overlay">
+                        <span class="card-tag">深度专栏</span>
+                        <h2>霓虹熄灭后的城市：王家卫美学的现代回响</h2>
+                        <p>探讨如何用胶片镜头重构现代都市的孤独与疏离感。</p>
+                    </div>
+                </article>
+                <aside>
+                    <h3 class="section-title" style="font-size: 1.4rem; border:none; padding:0;">本周关注</h3>
+                    <div class="sidebar-list">
+                        <div class="sidebar-item">
+                            <img src="https://picsum.photos/seed/art1/100/100" class="sidebar-thumb" alt="Thumb">
+                            <div class="sidebar-info">
+                                <h4>胶片颗粒的救赎</h4>
+                                <span>摄影技巧 · 3分钟阅读</span>
+                            </div>
+                        </div>
+                        <div class="sidebar-item">
+                            <img src="https://picsum.photos/seed/art2/100/100" class="sidebar-thumb" alt="Thumb">
+                            <div class="sidebar-info">
+                                <h4>地下电影档案：1984年的实验影像</h4>
+                                <span>历史回顾 · 5分钟阅读</span>
+                            </div>
+                        </div>
+                        <div class="sidebar-item">
+                            <img src="https://picsum.photos/seed/art3/100/100" class="sidebar-thumb" alt="Thumb">
+                            <div class="sidebar-info">
+                                <h4>暗房里的自我对话</h4>
+                                <span>个人随笔 · 2分钟阅读</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </section>
+
+            <!-- Latest Articles Grid -->
+            <section>
+                <div class="section-title">
+                    <h2>最新影像与故事</h2>
+                    <a href="#">查看更多 &rarr;</a>
+                </div>
+                <div class="grid-layout">
+                    <article class="card">
+                        <img src="https://picsum.photos/seed/night/400/300" class="card-image" alt="Article Image">
+                        <div class="card-content">
+                            <span class="card-tag">城市漫游</span>
+                            <h3><a href="#">深夜便利店里的微光</a></h3>
+                            <p>记录凌晨三点的便利店，那些为了生活而奔波的陌生人面孔。</p>
+                            <div class="card-meta">
+                                <span>2023年10月24日</span>
+                                <span>2.4k 阅读</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <img src="https://picsum.photos/seed/film/400/300" class="card-image" alt="Article Image">
+                        <div class="card-content">
+                            <span class="card-tag">设备评测</span>
+                            <h3><a href="#">为什么胶片相机依然迷人？</a></h3>
+                            <p>在数码时代，不可预测的曝光与色彩依然拥有独特的魅力。</p>
+                            <div class="card-meta">
+                                <span>2023年10月22日</span>
+                                <span>1.8k 阅读</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <img src="https://picsum.photos/seed/music/400/300" class="card-image" alt="Article Image">
+                        <div class="card-content">
+                            <span class="card-tag">小众音乐</span>
+                            <h3><a href="#">后摇与城市噪音的共生关系</a></h3>
+                            <p>分析环境音效如何融入独立乐队的创作中，构建听觉景观。</p>
+                            <div class="card-meta">
+                                <span>2023年10月20日</span>
+                                <span>980 阅读</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <img src="https://picsum.photos/seed/street/400/300" class="card-image" alt="Article Image">
+                        <div class="card-content">
+                            <span class="card-tag">街头摄影</span>
+                            <h3><a href="#">捕捉光影的瞬间：街头摄影指南</a></h3>
+                            <p>如何在混乱的人群中找到构图的最佳角度，定格那一秒的精彩。</p>
+                            <div class="card-meta">
+                                <span>2023年10月18日</span>
+                                <span>3.1k 阅读</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <img src="https://picsum.photos/seed/retro/400/300" class="card-image" alt="Article Image">
+                        <div class="card-content">
+                            <span class="card-tag">复古收藏</span>
+                            <h3><a href="#">胶片洗印店的兴衰史</a></h3>
+                            <p>随着数码化进程，那些承载着记忆的洗印店正在逐渐消失。</p>
+                            <div class="card-meta">
+                                <span>2023年10月15日</span>
+                                <span>1.5k 阅读</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <img src="https://picsum.photos/seed/nightlife/400/300" class="card-image" alt="Article Image">
+                        <div class="card-content">
+                            <span class="card-tag">夜生活</span>
+                            <h3><a href="#">城市夜游指南：寻找隐秘酒吧</a></h3>
+                            <p>整理了一份不为人知的地下酒吧地图，适合独自一人或双人探索。</p>
+                            <div class="card-meta">
+                                <span>2023年10月12日</span>
+                                <span>4.2k 阅读</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Screening Schedule -->
+            <section class="schedule-section">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>光影放映厅</h2>
+                        <a href="#">查看排期 &rarr;</a>
+                    </div>
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th width="20%">时间</th>
+                                <th width="50%">影片名称</th>
+                                <th width="15%">类型</th>
+                                <th width="15%">状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>周五 20:00</td>
+                                <td>
+                                    <span class="film-title">《霓虹雨夜》</span>
+                                    <span class="film-meta">导演：Alex Chen | 89分钟</span>
+                                </td>
+                                <td>剧情 / 科幻</td>
+                                <td><span class="status-badge status-ticket">售票中</span></td>
+                            </tr>
+                            <tr>
+                                <td>周六 14:00</td>
+                                <td>
+                                    <span class="film-title">《静默的喧嚣》</span>
+                                    <span class="film-meta">导演：Sarah Wu | 105分钟</span>
+                                </td>
+                                <td>纪录片</td>
+                                <td><span class="status-badge status-ticket">售票中</span></td>
+                            </tr>
+                            <tr>
+                                <td>周六 19:30</td>
+                                <td>
+                                    <span class="film-title">《旧物回响》</span>
+                                    <span class="film-meta">导演：李默 | 72分钟</span>
+                                </td>
+                                <td>短片集</td>
+                                <td><span class="status-badge status-ticket">售票中</span></td>
+                            </tr>
+                            <tr>
+                                <td>周日 16:00</td>
+                                <td>
+                                    <span class="film-title">《城市边缘》</span>
+                                    <span class="film-meta">导演：未知 | 60分钟</span>
+                                </td>
+                                <td>实验影像</td>
+                                <td><span class="status-badge status-ticket">即将售罄</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo" style="display:block; margin-bottom:1rem;">光彩的第二街</a>
+                    <p style="font-size: 0.9rem; line-height: 1.8;">
+                        这是一个关于影像、生活与城市的独立空间。我们致力于发掘被遗忘的故事，记录那些在城市角落里闪烁的光芒。
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h5>栏目导航</h5>
+                    <ul>
+                        <li><a href="#">深度影评</a></li>
+                        <li><a href="#">独立影像</a></li>
+                        <li><a href="#">城市漫游</a></li>
+                        <li><a href="#">胶片摄影</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>关于我们</h5>
+                    <ul>
+                        <li><a href="#">编辑团队</a></li>
+                        <li><a href="#">投稿指南</a></li>
+                        <li><a href="#">合作联系</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>关注我们</h5>
+                    <ul>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Bilibili</a></li>
+                        <li><a href="#">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 光彩的第二街. All Rights Reserved. Designed for Art & Culture.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+                                              </html>
