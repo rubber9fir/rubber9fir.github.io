@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="美洽官网 - 全球领先的一站式即时通讯与客户服务解决方案。提供多渠道客服系统、在线客服软件、智能客服机器人及工单系统，帮助企业提升客户满意度与转化率。">
+    <meta name="keywords" content="美洽, 客服系统, 在线客服, 智能客服, 客户服务软件, 多渠道客服">
+    <title>美洽 - 全球领先的一站式即时通讯与客户服务解决方案</title>
+    <style>
+        :root {
+            --primary-color: #0084FF;
+            --primary-dark: #0066cc;
+            --secondary-color: #FF9D00;
+            --text-main: #333333;
+            --text-light: #666666;
+            --bg-body: #F5F7FA;
+            --bg-white: #FFFFFF;
+            --border-color: #E0E0E0;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* Utility Classes */
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(0, 132, 255, 0.05);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 16px;
+        }
+
+        .section-title p {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--bg-white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%);
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            line-height: 1.2;
+            font-weight: 800;
+            margin-bottom: 24px;
+            color: var(--text-main);
+        }
+
+        .hero-text h1 span {
+            color: var(--primary-color);
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 32px;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            width: 100%;
+            height: auto;
+        }
+
+        /* Stats Section */
+        .stats-bar {
+            background-color: var(--bg-white);
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 32px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .stat-item p {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 8px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--bg-white);
+            padding: 40px 30px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(0, 132, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: var(--primary-color);
+            font-size: 28px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Channels Section */
+        .channels {
+            padding: 100px 0;
+            background-color: var(--bg-white);
+        }
+
+        .channel-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .channel-item {
+            position: relative;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            height: 200px;
+            cursor: pointer;
+        }
+
+        .channel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .channel-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .channel-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 20px;
+            color: white;
+        }
+
+        .channel-overlay h4 {
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .channel-overlay p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        /* Solution/How it Works */
+        .solution {
+            padding: 100px 0;
+            background-color: var(--bg-body);
+        }
+
+        .step-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            position: relative;
+        }
+
+        .step-list::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--border-color);
+            z-index: 0;
+        }
+
+        .step-item {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background-color: var(--bg-white);
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-color);
+            box-shadow: 0 4px 10px rgba(0, 132, 255, 0.1);
+        }
+
+        .step-item h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .step-item p {
+            color: var(--text-light);
+            font-size: 14px;
+            padding: 0 10px;
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 100px 0;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            align-items: start;
+        }
+
+        .pricing-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card.popular {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .pricing-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .pricing-price {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 30px;
+        }
+
+        .pricing-price span {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--text-light);
+        }
+
+        .pricing-features {
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            margin-bottom: 12px;
+            color: var(--text-light);
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--primary-color);
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 100px 0;
+            background-color: var(--bg-white);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .faq-question:hover {
+            color: var(--primary-color);
+        }
+
+        .faq-answer {
+            margin-top: 16px;
+            color: var(--text-light);
+            font-size: 15px;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta-section .btn {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        .cta-section .btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: #b0b0b0;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            line-height: 1.8;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 16px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text p {
+                margin: 0 auto 32px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .feature-grid, .channel-grid, .pricing-grid, .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .step-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .step-list::before {
+                display: none;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-actions {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-text h1 {
+                font-size: 36px;
+            }
+
+            .feature-grid, .channel-grid, .pricing-grid, .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .step-list {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17H11V15H13V17ZM13 13H11V7H13V13Z" fill="#0084FF"/>
+                </svg>
+                <span>美洽</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#features">功能特性</a>
+                <a href="#channels">多渠道</a>
+                <a href="#solutions">解决方案</a>
+                <a href="#pricing">价格方案</a>
+                <a href="#faq">帮助中心</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="#" class="btn btn-outline">登录</a>
+                <a href="#" class="btn btn-primary">免费试用</a>
+            </div>
+            <div class="mobile-menu-btn">☰</div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>让客户沟通更简单、<br><span>服务效率更高</span></h1>
+                <p>美洽为您提供一站式即时通讯与客户服务解决方案。打通网站、APP、微信、微博等多渠道，让每一次互动都创造价值。</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary">立即开始使用</a>
+                    <a href="#" class="btn btn-outline">观看演示视频</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://picsum.photos/seed/meqia_hero/600/400" alt="美洽客服系统界面演示">
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-bar">
+        <div class="container stats-grid">
+            <div class="stat-item">
+                <h3>50,000+</h3>
+                <p>企业用户信赖</p>
+            </div>
+            <div class="stat-item">
+                <h3>10亿+</h3>
+                <p>累计沟通消息</p>
+            </div>
+            <div class="stat-item">
+                <h3>99.9%</h3>
+                <p>系统在线稳定性</p>
+            </div>
+            <div class="stat-item">
+                <h3>4.9/5</h3>
+                <p>用户满意度评分</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>全方位客服能力</h2>
+                <p>不仅仅是聊天工具，更是您企业的智能服务中枢，助力业务增长</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>即时通讯</h3>
+                    <p>提供流畅、稳定的单聊与群聊功能，支持富文本、文件传输、表情包等多种交互方式，提升沟通体验。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>智能客服机器人</h3>
+                    <p>基于NLP技术，7x24小时自动接待，精准识别用户意图，自动分流常见问题，释放人工客服压力。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>工单系统</h3>
+                    <p>将非即时咨询转化为工单，支持工单流转、优先级设置、客户跟进记录，实现复杂问题的闭环管理。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>多渠道统一</h3>
+                    <p>无缝接入网站客服、APP内嵌、微信公众号、微博私信等渠道，一次接入，统一管理所有客户消息。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎧</div>
+                    <h3>语音通话</h3>
+                    <p>集成高清语音通话功能，支持语音转文字，记录通话详情，让远程沟通如面对面般清晰。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>数据安全合规</h3>
+                    <p>通过ISO27001安全认证，支持私有化部署与数据加密传输，全方位保障企业客户数据安全。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Channels Section -->
+    <section id="channels" class="channels">
+        <div class="container">
+            <div class="section-title">
+                <h2>全渠道接入，无缝连接</h2>
+                <p>无论客户在何处咨询，您都能通过美洽统一回复，不错过任何一个潜在客户</p>
+            </div>
+            <div class="channel-grid">
+                <div class="channel-item">
+                    <img src="https://picsum.photos/seed/web/400/300" alt="网站客服">
+                    <div class="channel-overlay">
+                        <h4>网站客服</h4>
+                        <p>悬浮窗/全屏/内嵌多种模式</p>
+                    </div>
+                </div>
+                <div class="channel-item">
+                    <img src="https://picsum.photos/seed/app/400/300" alt="APP客服">
+                    <div class="channel-overlay">
+                        <h4>APP客服</h4>
+                        <p>SDK一键接入，完美适配iOS/Android</p>
+                    </div>
+                </div>
+                <div class="channel-item">
+                    <img src="https://picsum.photos/seed/wechat/400/300" alt="微信客服">
+                    <div class="channel-overlay">
+                        <h4>微信客服</h4>
+                        <p>公众号/小程序消息互通</p>
+                    </div>
+                </div>
+                <div class="channel-item">
+                    <img src="https://picsum.photos/seed/social/400/300" alt="社交媒体">
+                    <div class="channel-overlay">
+                        <h4>社交媒体</h4>
+                        <p>微博、抖音等第三方平台接入</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works -->
+    <section id="solutions" class="solution">
+        <div class="container">
+            <div class="section-title">
+                <h2>四步构建高效服务体系</h2>
+                <p>简单配置，快速上线，美洽助您轻松实现数字化客户服务升级</p>
+            </div>
+            <div class="step-list">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <h3>账号注册</h3>
+                    <p>填写企业信息并完成验证，免费开通美洽账号。</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <h3>渠道接入</h3>
+                    <p>根据指引选择接入方式（网站/APP/微信），复制代码或配置接口。</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <h3>配置机器人</h3>
+                    <p>设置欢迎语、自动回复规则及知识库，让AI自动处理基础咨询。</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <h3>开始服务</h3>
+                    <p>邀请客服人员加入，实时接收消息并为客户提供专业解答。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>灵活的价格方案</h2>
+                <p>根据企业规模与业务需求，选择最适合您的服务套餐</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3 class="pricing-name">免费版</h3>
+                    <div class="pricing-price">¥0<span>/月</span></div>
+                    <ul class="pricing-features">
+                        <li>最多 2 个客服账号</li>
+                        <li>网站客服接入</li>
+                        <li>基础消息记录</li>
+                        <li>基础工单系统</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline" style="width: 100%">免费注册</a>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="pricing-badge">推荐</div>
+                    <h3 class="pricing-name">专业版</h3>
+                    <div class="pricing-price">¥299<span>/月</span></div>
+                    <ul class="pricing-features">
+                        <li>无限客服账号</li>
+                        <li>网站、APP、微信全渠道</li>
+                        <li>智能机器人</li>
+                        <li>工单流转与报表</li>
+                        <li>数据导出功能</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary" style="width: 100%">立即试用</a>
+                </div>
+                <div class="pricing-card">
+                    <h3 class="pricing-name">企业版</h3>
+                    <div class="pricing-price">定制<span>/年</span></div>
+                    <ul class="pricing-features">
+                        <li>私有化部署</li>
+                        <li>专属客户经理</li>
+                        <li>API 深度开发接口</li>
+                        <li>高级数据安全审计</li>
+                        <li>定制化功能开发</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline" style="width: 100%">联系销售</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>常见问题解答</h2>
+                <p>了解关于美洽客服系统的更多细节</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item active">
+                    <div class="faq-question">
+                        美洽支持私有化部署吗？
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        是的，美洽提供企业版私有化部署方案，数据完全存储在您自己的服务器上，满足金融、政府等对数据安全有极高要求的行业需求。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        如何接入微信公众号？
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        在美洽后台选择“微信公众号”渠道，根据指引完成OAuth2.0认证授权，即可实现公众号后台消息与美洽客服系统的实时互通。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        智能客服机器人支持自定义吗？
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        支持。您可以设置关键词自动回复、设置多轮对话逻辑，并将您的知识库导入系统，让机器人更懂您的业务。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        如果遇到技术问题怎么办？
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        我们提供7x24小时在线客服支持，同时也拥有完善的帮助文档和视频教程，确保您能顺利使用美洽的各项功能。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>准备好提升您的客户服务了吗？</h2>
+            <p>加入超过 50,000 家企业的选择，让美洽成为您业务增长的好帮手。</p>
+            <a href="#" class="btn">免费开始使用</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>美洽</h3>
+                    <p>美洽致力于为企业提供一站式即时通讯与客户服务解决方案，通过技术创新连接客户与业务，提升服务效率与转化率。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>产品中心</h4>
+                    <ul>
+                        <li><a href="#">网站客服</a></li>
+                        <li><a href="#">APP客服</a></li>
+                        <li><a href="#">智能机器人</a></li>
+                        <li><a href="#">工单系统</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>解决方案</h4>
+                    <ul>
+                        <li><a href="#">电商客服</a></li>
+                        <li><a href="#">在线教育</a></li>
+                        <li><a href="#">金融科技</a></li>
+                        <li><a href="#">政务服务</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>支持与服务</h4>
+                    <ul>
+                        <li><a href="#">帮助中心</a></li>
+                        <li><a href="#">API 文档</a></li>
+                        <li><a href="#">社区论坛</a></li>
+                        <li><a href="#">联系我们</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 美洽 Meiqia. All rights reserved. | 京ICP备XXXXXXXX号</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <script>
+        // Simple FAQ Toggle Logic
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        const navActions = document.querySelector('.nav-actions');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isHidden = window.getComputedStyle(navLinks).display === 'none';
+            if (isHidden) {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '70px';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.background = 'white';
+                navLinks.style.padding = '20px';
+                navLinks.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+                
+                navActions.style.display = 'flex';
+                navActions.style.flexDirection = 'column';
+                navActions.style.position = 'absolute';
+                navActions.style.top = '250px'; // Adjust based on links height
+                navActions.style.left = '0';
+                navActions.style.width = '100%';
+                navActions.style.background = 'white';
+                navActions.style.padding = '0 20px 20px';
+            } else {
+                navLinks.style.display = 'none';
+                navActions.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+              </html>
