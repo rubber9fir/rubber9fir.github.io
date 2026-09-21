@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回收站不见了 - Windows/macOS 恢复指南与常见问题解决</title>
+    <meta name="description" content="回收站不见了怎么办？本站提供Windows 10/11、macOS及移动端回收站消失的详细排查步骤、数据恢复技巧及预防方案。">
+    <meta name="keywords" content="回收站不见了,回收站消失,回收站恢复,Windows回收站,macOS回收站">
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --text-main: #1f2937;
+            --text-secondary: #4b5563;
+            --bg-body: #f3f4f6;
+            --bg-card: #ffffff;
+            --border-color: #e5e7eb;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --spacing-unit: 1rem;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        /* Header */
+        header {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--primary-color);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1.25rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Problem Analysis */
+        .problem-section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 1.875rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: #eff6ff;
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Solution Steps */
+        .solution-section {
+            background: #fff;
+            padding: 4rem 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .steps-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            background: var(--text-main);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.125rem;
+        }
+
+        .step-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .code-block {
+            background: #1f2937;
+            color: #e5e7eb;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin-top: 0.5rem;
+        }
+
+        /* Platform Tabs */
+        .platform-section {
+            padding: 4rem 0;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1.5rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .check-icon {
+            color: var(--success-color);
+            margin-top: 3px;
+        }
+
+        /* FAQ */
+        .faq-section {
+            padding: 4rem 0;
+            background: #f9fafb;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .faq-question {
+            padding: 1.25rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 1rem;
+        }
+
+        .faq-question:hover {
+            background: #f9fafb;
+        }
+
+        .faq-answer {
+            padding: 0 1.25rem 1.25rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            display: none;
+        }
+
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+
+        .faq-item.open .faq-question svg {
+            transform: rotate(180deg);
+        }
+
+        /* Footer */
+        footer {
+            background: #111827;
+            color: #9ca3af;
+            padding: 3rem 0;
+            font-size: 0.9rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 1.25rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                height: auto;
+                padding: 1rem 0;
+                gap: 1rem;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .step-item {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-inner">
+        <div class="logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 6h18"></path>
+                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+            </svg>
+            数据恢复指南
+        </div>
+        <nav class="nav-menu">
+            <a href="#causes" class="active">原因分析</a>
+            <a href="#solutions">解决方法</a>
+            <a href="#macos">macOS</a>
+            <a href="#faq">常见问题</a>
+        </nav>
+        <a href="#solutions" class="btn-primary">开始修复</a>
+    </div>
+</header>
+
+<main>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <span class="status-badge">系统状态正常</span>
+            <h1>回收站不见了怎么办？</h1>
+            <p>当桌面上的垃圾桶图标突然消失，或打开“我的电脑”找不到回收站时，不要惊慌。本文提供针对 Windows 和 macOS 的详细排查与恢复方案。</p>
+        </div>
+    </section>
+
+    <!-- Problem Causes -->
+    <section id="causes" class="problem-section">
+        <div class="container">
+            <h2 class="section-title">为什么回收站会消失？</h2>
+            <div class="grid-3">
+                <article class="card">
+                    <div class="card-icon">🛠️</div>
+                    <h3>系统设置变更</h3>
+                    <p>用户可能在控制面板中误触了“自定义桌面”选项，或者通过组策略修改了桌面图标设置，导致回收站被隐藏。</p>
+                </article>
+                <article class="card">
+                    <div class="card-icon">💻</div>
+                    <h3>文件资源管理器故障</h3>
+                    <p>Windows 文件资源管理器的缓存数据损坏，或注册表项丢失，会导致回收站图标无法正常加载和显示。</p>
+                </article>
+                <article class="card">
+                    <div class="card-icon">🦠</div>
+                    <h3>病毒或恶意软件</h3>
+                    <p>部分恶意程序会篡改桌面图标，将其隐藏或替换为其他图标，同时可能伴随系统性能下降或弹窗广告。</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions -->
+    <section id="solutions" class="solution-section">
+        <div class="container">
+            <h2 class="section-title">快速恢复指南</h2>
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>检查桌面图标设置（Windows）</h3>
+                        <p>最简单的方法是检查系统设置是否误开启了隐藏图标功能。</p>
+                        <ol style="margin-left: 1.5rem; margin-top: 0.5rem; margin-bottom: 0.5rem; color: var(--text-secondary);">
+                            <li>在桌面空白处点击鼠标右键。</li>
+                            <li>选择“查看”。</li>
+                            <li>确认“显示桌面图标”选项已被勾选。</li>
+                            <li>同时检查“自动隐藏桌面图标”是否被勾选。</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>使用注册表修复（进阶）</h3>
+                        <p>如果上述方法无效，可能是注册表键值丢失。请谨慎操作：</p>
+                        <div class="code-block">
+                            Windows Registry Editor Version 5.00
+
+                            [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\{645FF040-5081-101B-9F08-00AA002F954E}]
+                            @="Recycle Bin"
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>重启资源管理器进程</h3>
+                        <p>强制刷新文件资源管理器缓存，通常能解决图标加载延迟或丢失的问题。</p>
+                        <div class="code-block">
+                            1. 按下 Ctrl + Shift + Esc 打开任务管理器。
+                            2. 找到“Windows 资源管理器”。
+                            3. 右键点击并选择“重新启动”。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Specifics -->
+    <section class="platform-section">
+        <div class="container">
+            <h2 class="section-title">不同系统的解决方案</h2>
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('windows')">Windows</button>
+                <button class="tab-btn" onclick="switchTab('macos')">macOS</button>
+                <button class="tab-btn" onclick="switchTab('mobile')">移动端</button>
+            </div>
+
+            <!-- Windows Tab -->
+            <div id="windows" class="tab-content active">
+                <div class="grid-3">
+                    <div class="card">
+                        <h3>Win 10 / Win 11 快捷方式</h3>
+                        <p>如果桌面图标完全消失，使用快捷键是最高效的方式：</p>
+                        <ul class="feature-list">
+                            <li><span class="check-icon">✓</span> <strong>Win + D</strong>：显示桌面（隐藏所有窗口，再次按下显示所有内容）</li>
+                            <li><span class="check-icon">✓</span> <strong>Win + Ctrl + D</strong>：新建虚拟桌面（Win 11 新功能）</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>组策略恢复</h3>
+                        <p>对于专业版和企业版用户，可以通过组策略启用回收站：</p>
+                        <ul class="feature-list">
+                            <li><span class="check-icon">✓</span> Win + R 输入 gpedit.msc</li>
+                            <li><span class="check-icon">✓</span> 用户配置 > 管理模板 > 桌面</li>
+                            <li><span class="check-icon">✓</span> 启用“隐藏桌面上的回收站图标”</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- macOS Tab -->
+            <div id="macos" class="tab-content">
+                <div class="card">
+                    <h3>在 Finder 中显示</h3>
+                    <p>macOS 的“废纸篓”默认不直接显示在桌面，需要手动添加：</p>
+                    <ul class="feature-list">
+                        <li><span class="check-icon">✓</span> 打开 Finder（访达）</li>
+                        <li><span class="check-icon">✓</span> 点击顶部菜单栏的“偏好设置”</li>
+                        <li><span class="check-icon">✓</span> 选择“通用”</li>
+                        <li><span class="check-icon">✓</span> 勾选“在桌面上显示废纸篓”</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Mobile Tab -->
+            <div id="mobile" class="tab-content">
+                <div class="card">
+                    <h3>Android / iOS</h3>
+                    <p>手机系统通常没有传统意义上的“回收站”桌面图标，但文件管理器通常包含回收功能：</p>
+                    <ul class="feature-list">
+                        <li><span class="check-icon">✓</span> 打开“文件管理”或“我的文件”</li>
+                        <li><span class="check-icon">✓</span> 寻找“最近删除”或“回收站”文件夹</li>
+                        <li><span class="check-icon">✓</span> 长按文件选择“恢复”</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <h2 class="section-title">常见问题解答</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">恢复的文件还在回收站里吗？<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+                    <div class="faq-answer">
+                        如果只是删除到回收站，文件依然在磁盘上，数据尚未被覆盖。只要不在回收站清空它，随时可以还原。一旦执行了“清空回收站”操作，且没有备份，文件将很难恢复。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">删除文件后重启电脑，回收站会自动清空吗？<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+                    <div class="faq-answer">
+                        不会。除非你手动清空了回收站，或者设置了自动清空任务计划，否则重启电脑不会影响回收站内的文件。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">如何防止回收站图标再次消失？<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+                    <div class="faq-answer">
+                        定期检查系统更新，避免安装不明来源的第三方美化软件。保持杀毒软件最新，并定期扫描系统。对于重要文件，建议使用云盘或移动硬盘进行异地备份。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>数据恢复指南</h4>
+                <p>专注提供系统故障排查、数据恢复技巧及安全防护知识。帮助用户解决日常电脑使用中遇到的各类疑难杂症。</p>
+            </div>
+            <div class="footer-col">
+                <h4>快速链接</h4>
+                <ul>
+                    <li><a href="#">磁盘清理教程</a></li>
+                    <li><a href="#">系统备份方案</a></li>
+                    <li><a href="#">隐私安全设置</a></li>
+                    <li><a href="#">联系支持</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>相关资源</h4>
+                <ul>
+                    <li><a href="#">Windows 11 功能介绍</a></li>
+                    <li><a href="#">macOS Ventura 更新日志</a></li>
+                    <li><a href="#">Git 常用命令速查</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 数据恢复指南. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Tab Switching Logic
+    function switchTab(platformId) {
+        // Remove active class from all buttons and contents
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        
+        // Add active class to clicked button and corresponding content
+        event.target.classList.add('active');
+        document.getElementById(platformId).classList.add('active');
+    }
+
+    // FAQ Accordion Logic
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const faqItem = button.parentElement;
+            
+            // Toggle current item
+            faqItem.classList.toggle('open');
+            
+            // Optional: Close others when one is opened
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('open');
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+                                         </html>
