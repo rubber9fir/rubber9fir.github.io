@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="大浦房 - 专业房屋租赁与买卖服务平台，提供全方位的房产交易资讯、房源展示、装修指南及本地生活服务，助您轻松找到理想家园。">
+    <meta name="keywords" content="大浦房, 房屋租赁, 二手房交易, 房产资讯, 装修设计, 本地房产">
+    <title>大浦房 - 专业房产租赁与交易服务平台</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --secondary-color: #ecf0f1;
+            --text-color: #333;
+            --text-light: #666;
+            --bg-color: #f8f9fa;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0,0,0,0.05);
+            --radius: 8px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Utility */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent-color);
+            color: var(--white);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-color);
+            position: relative;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-color);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-bar {
+            background: var(--white);
+            padding: 10px;
+            border-radius: 50px;
+            display: inline-flex;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .search-bar input, .search-bar select {
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            outline: none;
+            flex: 1;
+        }
+
+        .search-bar button {
+            border-radius: 40px;
+            padding: 12px 30px;
+        }
+
+        /* Quick Stats */
+        .stats-bar {
+            background: var(--white);
+            margin-top: -30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 28px;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* Main Content Grid */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 2.5fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+            margin-bottom: 60px;
+        }
+
+        /* Property Grid */
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+
+        .section-title h2 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .section-title a {
+            font-size: 14px;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .property-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .property-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img {
+            height: 200px;
+            background-color: #ddd;
+            position: relative;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .badge.rent { background-color: #e74c3c; }
+        .badge.sell { background-color: #27ae60; }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-price {
+            font-size: 20px;
+            color: var(--accent-color);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .card-price span {
+            font-size: 12px;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        .card-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .card-features {
+            display: flex;
+            gap: 15px;
+            font-size: 12px;
+            color: var(--text-light);
+            border-top: 1px solid var(--secondary-color);
+            padding-top: 10px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Sidebar */
+        .sidebar-widget {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .widget-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            border-left: 4px solid var(--accent-color);
+            padding-left: 10px;
+        }
+
+        .guide-list li {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed var(--secondary-color);
+        }
+
+        .guide-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .guide-list h4 {
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+
+        .guide-list p {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .price-range {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .price-range input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        /* Service Banner */
+        .service-banner {
+            background-color: #34495e;
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .service-banner h2 {
+            margin-bottom: 10px;
+        }
+
+        .service-banner p {
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .service-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .service-links a {
+            background: rgba(255,255,255,0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .service-links a:hover {
+            background: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a252f;
+            color: #bdc3c7;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #34495e;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+            }
+
+            nav ul {
+                margin: 15px 0;
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .search-bar {
+                flex-direction: column;
+                border-radius: var(--radius);
+            }
+
+            .search-bar button {
+                width: 100%;
+                border-radius: var(--radius);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">大浦<span>房</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">新房</a></li>
+                    <li><a href="#">二手房</a></li>
+                    <li><a href="#">租房</a></li>
+                    <li><a href="#">装修</a></li>
+                    <li><a href="#">资讯</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="#" class="btn btn-outline">登录</a>
+                <a href="#" class="btn btn-primary">发布房源</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>发现您的理想家园</h1>
+                <p>海量真实房源，专业的房产资讯，大浦房为您提供一站式房屋租赁与买卖服务。</p>
+                <div class="search-bar">
+                    <input type="text" placeholder="请输入小区名称、区域或商圈">
+                    <select>
+                        <option value="all">全部类型</option>
+                        <option value="rent">租房</option>
+                        <option value="sell">买房</option>
+                    </select>
+                    <button class="btn btn-primary">搜索</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <div class="container">
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <h3>5万+</h3>
+                    <p>在售房源</p>
+                </div>
+                <div class="stat-item">
+                    <h3>12万+</h3>
+                    <p>已租房源</p>
+                </div>
+                <div class="stat-item">
+                    <h3>500+</h3>
+                    <p>专业经纪人</p>
+                </div>
+                <div class="stat-item">
+                    <h3>10年</h3>
+                    <p>服务经验</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Layout -->
+        <div class="container main-layout">
+            <!-- Left Column: Content -->
+            <div class="content-col">
+                <section class="section-title">
+                    <h2>热门推荐</h2>
+                    <a href="#">查看更多 &rarr;</a>
+                </section>
+
+                <div class="property-grid">
+                    <!-- Card 1 -->
+                    <article class="property-card">
+                        <div class="card-img">
+                            <span class="badge rent">出租</span>
+                            <img src="https://picsum.photos/seed/house1/400/300" alt="精装两居室">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-price">4500 <span>元/月</span></div>
+                            <h3 class="card-title">大浦花园 精装两居室 南北通透 近地铁</h3>
+                            <div class="card-info">
+                                <span>大浦区 · 阳光街道</span>
+                                <span>85㎡</span>
+                            </div>
+                            <div class="card-features">
+                                <span class="feature-item">2室1厅</span>
+                                <span class="feature-item">家具家电全齐</span>
+                                <span class="feature-item">近地铁</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card 2 -->
+                    <article class="property-card">
+                        <div class="card-img">
+                            <span class="badge sell">出售</span>
+                            <img src="https://picsum.photos/seed/house2/400/300" alt="学区房">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-price">380 <span>万</span></div>
+                            <h3 class="card-title">大浦书香苑 优质学区房 三室一厅 学区名额</h3>
+                            <div class="card-info">
+                                <span>大浦区 · 教育园区</span>
+                                <span>120㎡</span>
+                            </div>
+                            <div class="card-features">
+                                <span class="feature-item">3室2厅</span>
+                                <span class="feature-item">满五唯一</span>
+                                <span class="feature-item">近学校</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card 3 -->
+                    <article class="property-card">
+                        <div class="card-img">
+                            <span class="badge rent">出租</span>
+                            <img src="https://picsum.photos/seed/house3/400/300" alt="精装公寓">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-price">2200 <span>元/月</span></div>
+                            <h3 class="card-title">大浦中心 精致单身公寓 独立卫浴 地铁口</h3>
+                            <div class="card-info">
+                                <span>大浦区 · 商务中心</span>
+                                <span>45㎡</span>
+                            </div>
+                            <div class="card-features">
+                                <span class="feature-item">1室0厅</span>
+                                <span class="feature-item">拎包入住</span>
+                                <span class="feature-item">近商圈</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card 4 -->
+                    <article class="property-card">
+                        <div class="card-img">
+                            <span class="badge sell">出售</span>
+                            <img src="https://picsum.photos/seed/house4/400/300" alt="别墅">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-price">650 <span>万</span></div>
+                            <h3 class="card-title">大浦山水 别墅 环境优美 独立花园</h3>
+                            <div class="card-info">
+                                <span>大浦区 · 郊区板块</span>
+                                <span>280㎡</span>
+                            </div>
+                            <div class="card-features">
+                                <span class="feature-item">独栋别墅</span>
+                                <span class="feature-item">私家花园</span>
+                                <span class="feature-item">车位充足</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div style="text-align: center; margin-top: 40px;">
+                    <button class="btn btn-outline">加载更多房源</button>
+                </div>
+            </div>
+
+            <!-- Right Column: Sidebar -->
+            <aside class="sidebar-col">
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">租房指南</h3>
+                    <ul class="guide-list">
+                        <li>
+                            <h4>如何辨别真假房源？</h4>
+                            <p>查看图片清晰度、核实中介资质及合同条款细节。</p>
+                        </li>
+                        <li>
+                            <h4>租房合同注意事项</h4>
+                            <p>明确租金支付方式、押金退还条件及维修责任划分。</p>
+                        </li>
+                        <li>
+                            <h4>大浦区热门商圈推荐</h4>
+                            <p>阳光街道适合通勤，教育园区适合家庭居住。</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">房产资讯</h3>
+                    <ul class="guide-list">
+                        <li>
+                            <h4>大浦区最新购房政策解读</h4>
+                            <p>2023年最新限购、贷款利率及税费政策汇总。</p>
+                        </li>
+                        <li>
+                            <h4>二手房交易避坑指南</h4>
+                            <p>警惕中介费陷阱，注意产权核查与资金监管。</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">价格趋势</h3>
+                    <p style="font-size: 13px; color: #666; margin-bottom: 10px;">大浦区本月平均租金：4.5元/㎡/天</p>
+                    <div style="height: 150px; display: flex; align-items: flex-end; justify-content: space-around; padding-bottom: 10px; border-bottom: 1px solid #eee;">
+                        <div style="width: 15%; background: #3498db; height: 40%; border-radius: 4px 4px 0 0;" title="1月"></div>
+                        <div style="width: 15%; background: #3498db; height: 50%; border-radius: 4px 4px 0 0;" title="2月"></div>
+                        <div style="width: 15%; background: #3498db; height: 45%; border-radius: 4px 4px 0 0;" title="3月"></div>
+                        <div style="width: 15%; background: #3498db; height: 60%; border-radius: 4px 4px 0 0;" title="4月"></div>
+                        <div style="width: 15%; background: #3498db; height: 75%; border-radius: 4px 4px 0 0;" title="5月"></div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Services Banner -->
+        <section class="service-banner">
+            <div class="container">
+                <h2>我们提供全方位的房产服务</h2>
+                <p>无论是买房、租房还是装修，大浦房都为您保驾护航</p>
+                <div class="service-links">
+                    <a href="#">房屋托管</a>
+                    <a href="#">房屋评估</a>
+                    <a href="#">装修设计</a>
+                    <a href="#">法律咨询</a>
+                    <a href="#">贷款代办</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>关于大浦房</h3>
+                    <p style="font-size: 14px; line-height: 1.8;">大浦房致力于为大浦区及周边居民提供最真实、最便捷的房产信息服务。我们拥有专业的经纪人团队和严格的房源审核机制。</p>
+                </div>
+                <div class="footer-col">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="#">关于我们</a></li>
+                        <li><a href="#">加入我们</a></li>
+                        <li><a href="#">合作伙伴</a></li>
+                        <li><a href="#">帮助中心</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>服务项目</h3>
+                    <ul>
+                        <li><a href="#">新房交易</a></li>
+                        <li><a href="#">二手房买卖</a></li>
+                        <li><a href="#">房屋租赁</a></li>
+                        <li><a href="#">房屋装修</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>联系方式</h3>
+                    <ul>
+                        <li>客服热线：400-123-4567</li>
+                        <li>工作时间：周一至周日 9:00-21:00</li>
+                        <li>电子邮箱：support@dapufang.com</li>
+                        <li>公司地址：大浦区商务中心A座888号</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 大浦房 版权所有 | 仅供演示使用</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+  </html>
